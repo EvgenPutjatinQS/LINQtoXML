@@ -20,13 +20,6 @@ namespace LINQtoXMLTest
 
         public void LoadData()
         {
-            Console.WriteLine("Выберите вариант вывода данных:");
-            Console.WriteLine("1 - Все товары с информацией о магазине");
-            Console.WriteLine("2 - Все магазины с информацией о товаре");
-            Console.WriteLine("3 - Только товары/магазины для которых есть все данные");
-            Console.WriteLine("4 - Отобразить только продукты с уникальными значениями цен");
-            Console.WriteLine("5 - Отобразить товар и соответствуюшие магазины, где цена меньше 10");
-
             var products = from distr_Prod in xmlDataProduct.Element("products").Elements("productId")
                            select new Product
                            {
@@ -60,6 +53,7 @@ namespace LINQtoXMLTest
                             Console.WriteLine("Shop: {0}", dist_shop.DistrName);
                         }
                     }
+                    Repead();
                     break;
                 case 2:
                     foreach (var dist_shop in sort)
@@ -74,6 +68,7 @@ namespace LINQtoXMLTest
                             }
                         }
                     }
+                    Repead();
                     break;
                 case 3:
                     foreach (var dist in sort_Product)
@@ -89,6 +84,7 @@ namespace LINQtoXMLTest
                             }
                         }
                      }
+                    Repead();
                     break;
                 case 4:
                     
@@ -105,6 +101,7 @@ namespace LINQtoXMLTest
                             }
                         }
                     }
+                    Repead();
                     break;
                 case 5:
                     var sortPrace = products.OrderBy(i => i.Price);
@@ -122,8 +119,15 @@ namespace LINQtoXMLTest
                             }
                         }
                     }
+                    Repead();
                     break;
             }
+        }
+
+        void Repead()
+        {
+            Console.Write("\nПовторить выбор вывода данных  ");
+            LoadData();
         }
     }
     class Distributor

@@ -9,6 +9,13 @@ namespace LINQtoXMLTest
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Выберите вариант вывода данных:");
+            Console.WriteLine("1 - Все товары с информацией о магазине");
+            Console.WriteLine("2 - Все магазины с информацией о товаре");
+            Console.WriteLine("3 - Только товары/магазины для которых есть все данные");
+            Console.WriteLine("4 - Отобразить только продукты с уникальными значениями цен");
+            Console.WriteLine("5 - Отобразить товар и соответствуюшие магазины, где цена меньше 10");
+
             //NewXMLDoc n_xml_d = new NewXMLDoc();
             //n_xml_d.New_xml();
 

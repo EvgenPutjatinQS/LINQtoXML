@@ -8,3 +8,8 @@ C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.
 C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
 C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
 C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
+D:\GitHub\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.exe
+D:\GitHub\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.pdb
+D:\GitHub\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
+D:\GitHub\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
+D:\GitHub\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
