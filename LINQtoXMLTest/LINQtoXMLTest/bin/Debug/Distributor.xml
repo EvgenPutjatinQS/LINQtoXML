@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<distributors>
+  <distributorId ID_Distr="1214">
+    <distributorName>PCShop</distributorName>
+  </distributorId>
+  <distributorId ID_Distr="3563">
+    <distributorName>ABC</distributorName>
+  </distributorId>
+  <distributorId ID_Distr="">
+    <distributorName>Comfi</distributorName>
+  </distributorId>
+  <distributorId ID_Distr="6583">
+    <distributorName>ElMir</distributorName>
+  </distributorId>
+  <distributorId ID_Distr="">
+    <distributorName>Rozetka</distributorName>
+  </distributorId>
+</distributors>

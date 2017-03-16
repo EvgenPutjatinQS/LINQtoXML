@@ -1,0 +1,10 @@
+C:\Users\putyatin\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
+C:\Users\putyatin\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
+C:\Users\putyatin\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.exe
+C:\Users\putyatin\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.pdb
+C:\Users\putyatin\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
+C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.exe
+C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.pdb
+C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
+C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
+C:\Users\Genius\Desktop\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
