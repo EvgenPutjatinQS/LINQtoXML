@@ -71,53 +71,47 @@ namespace LINQtoXMLTest
                     Repead();
                     break;
                 case 3:
-                    foreach (var dist in sort_Product)
+                    var fullInfo = from fi in products
+                                   where ((int)fi.Price != 0 && (string)fi.ProductID != null)
+                                   select fi;
+                    foreach (var dist in fullInfo)
                     {
-                        if (dist.Price != 0 && dist.ProductID != null)
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
+                        Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
+                        foreach (var dist_shop in sort)
                         {
-                            Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                            Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
-                            foreach (var dist_shop in sort)
-                            {
-                                if (dist_shop.DistrID == dist.DistrID_Prod)
-                                    Console.WriteLine("Shop: {0}", dist_shop.DistrName);
-                            }
+                            if (dist_shop.DistrID == dist.DistrID_Prod)
+                            Console.WriteLine("Shop: {0}", dist_shop.DistrName);
                         }
                      }
                     Repead();
                     break;
                 case 4:
-                    
-                    foreach (var dist in sort_Product)
+                    var _sp = from i in products
+                             where ((int)i.Price != 0)
+                             select i;
+                    var _sortPrace = _sp.OrderBy(i => i.Price);
+                    foreach (var dist in _sortPrace)
                     {
-                        if (dist.Price != 0)
-                        {
-                            Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                            Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
-                            foreach (var dist_shop in sort)
-                            {
-                                if (dist_shop.DistrID == dist.DistrID_Prod)
-                                    Console.WriteLine("Shop: {0}", dist_shop.DistrName);
-                            }
-                        }
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
+                        Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
                     }
                     Repead();
                     break;
                 case 5:
-                    var sortPrace = products.OrderBy(i => i.Price);
-
+                    var sp = from i in products
+                             where ((int)i.Price < 10 && (int)i.Price != 0)
+                             select i;
+                    var sortPrace = sp.OrderBy(i => i.Price);
                     foreach (var dist in sortPrace)
                     {
-                        if (dist.Price <= 10 && dist.Price != 0)
-                        {
-                            Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                            Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
-                            foreach (var dist_shop in sort)
-                            {
-                                if (dist_shop.DistrID == dist.DistrID_Prod)
-                                    Console.WriteLine("Shop: {0}", dist_shop.DistrName);
-                            }
-                        }
+                          Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
+                          Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
+                          foreach (var dist_shop in sort)
+                          {
+                             if (dist_shop.DistrID == dist.DistrID_Prod)
+                             Console.WriteLine("Shop: {0}", dist_shop.DistrName);
+                          }
                     }
                     Repead();
                     break;
