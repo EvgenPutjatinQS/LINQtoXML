@@ -15,6 +15,7 @@ namespace LINQtoXMLTest
             Console.WriteLine("3 - Только товары/магазины для которых есть все данные");
             Console.WriteLine("4 - Отобразить только продукты с уникальными значениями цен");
             Console.WriteLine("5 - Отобразить товар и соответствуюшие магазины, где цена меньше 10");
+            Console.WriteLine("0 - Выход");
 
             //NewXMLDoc n_xml_d = new NewXMLDoc();
             //n_xml_d.New_xml();

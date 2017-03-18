@@ -35,7 +35,6 @@ namespace LINQtoXMLTest
                                   DistrID = ((string)distr.Attribute("ID_Distr")),
                                   DistrName = ((string)distr.Element("distributorName"))
                               };
-
             IEnumerable<Product> sort_Product = products.OrderBy(i => i.ProductID);
             IEnumerable<Distributor> sort = distributor.OrderBy(i => i.DistrID);
 
@@ -114,6 +113,9 @@ namespace LINQtoXMLTest
                           }
                     }
                     Repead();
+                    break;
+                case 0:
+                    Environment.Exit(0);
                     break;
             }
         }
