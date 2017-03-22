@@ -87,25 +87,25 @@ namespace LINQtoXMLTest
                     break;
                 case 4:
                     var _sp = from i in products
-                             where ((int)i.Price != 0)
+                             where (i.Price != 0)
+                             orderby(i.Price)
                              select i;
-                    var _sortPrace = _sp.OrderBy(i => i.Price);
-                    foreach (var dist in _sortPrace)
+                    foreach (var dist in _sp)
                     {
-                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                        Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1} \nProduct Discription: {2} \nPrace: {3}",
+                                            dist.ProductID, dist.ProductName, dist.ProductDistrib, dist.Price);
                     }
                     Repead();
                     break;
                 case 5:
                     var sp = from i in products
                              where ((int)i.Price < 10 && (int)i.Price != 0)
+                             orderby(i.Price)
                              select i;
-                    var sortPrace = sp.OrderBy(i => i.Price);
-                    foreach (var dist in sortPrace)
+                    foreach (var dist in sp)
                     {
-                          Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                          Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1} \nProduct Discription: {2} \nPrace: {3}",
+                                            dist.ProductID, dist.ProductName, dist.ProductDistrib, dist.Price);
                           foreach (var dist_shop in sort)
                           {
                              if (dist_shop.DistrID == dist.DistrID_Prod)
