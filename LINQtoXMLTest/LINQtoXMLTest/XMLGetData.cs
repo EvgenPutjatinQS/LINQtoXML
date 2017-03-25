@@ -42,30 +42,40 @@ namespace LINQtoXMLTest
             switch (currVal)
             { 
                 case 1:
-                    foreach (var dist in sort_Product)
+                    var group_prod = products.GroupJoin(distributor, pr => pr.DistrID_Prod, 
+                                                          dis => dis.DistrID,
+                                                          (prod, distr) => new
+                                                          {ProductName = prod.ProductName,
+                                                              ProductDistrib = prod.ProductDistrib,
+                                                              IDProd = prod.ProductID,
+                                                           Price = prod.Price,
+                                                           DistrName = distr.Select(d => d.DistrName)
+                                                          });
+                    var sort_prod = from s in group_prod
+                                    orderby s.IDProd
+                                        select s;
+                    foreach (var s in sort_prod)
                     {
-                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                        Console.WriteLine("Product Discription: {0} \nPrace: {1}", dist.ProductDistrib, dist.Price);
-                        foreach (var dist_shop in sort)
-                        {
-                            if (dist_shop.DistrID == dist.DistrID_Prod)
-                            Console.WriteLine("Shop: {0}", dist_shop.DistrName);
-                        }
+                        Console.WriteLine("\nID: {0}\nShop: {1}\nDiscription: {2}\nPrice: {3}\nShop: {4}"
+                                            , s.IDProd, s.ProductName, s.ProductDistrib, s.Price, s.DistrName); 
                     }
                     Repead();
                     break;
                 case 2:
-                    foreach (var dist_shop in sort)
+                    var group_shop = distributor.GroupJoin(products, dis => dis.DistrID, 
+                                                          pr => pr.DistrID_Prod,
+                                                          (dist, prod) => new
+                                                          {DistrName = dist.DistrName,
+                                                           ID = dist.DistrID,
+                                                           ProductName = prod.Select(p => p.ProductName)});
+                    var sort_shop = from s in group_shop
+                                    orderby s.ID
+                                        select s;
+                    foreach (var s in sort_shop)
                     {
-                        Console.WriteLine("\nShop: {0}", dist_shop.DistrName);
-                        foreach (var dist in sort_Product)
-                        {
-                            if (dist_shop.DistrID == dist.DistrID_Prod)
-                            {
-                                Console.WriteLine("Product ID: {0} \nProduct Name: {1}", dist.ProductID, dist.ProductName);
-                                Console.WriteLine("Product Discription: {0} \nPrace: {1}\n", dist.ProductDistrib, dist.Price);
-                            }
-                        }
+                        Console.WriteLine("\nShop: {0}, ID: {1}", s.DistrName, s.ID);
+                        foreach (var prod in s.ProductName)
+                        { Console.WriteLine("Product: {0}", prod); }
                     }
                     Repead();
                     break;
