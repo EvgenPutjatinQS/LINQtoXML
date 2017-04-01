@@ -41,17 +41,16 @@ namespace LINQtoXMLTest
             { 
                 case 1:
                     Console.WriteLine("Все товары с информацией о соответствующем магазите (если есть), \nотсортированные по producrId");
-                    var group_prod = from p in products
+                    var group_prod = (from p in products
                                      join s in distributor on p.DistrID_Prod equals s.DistrID
-                                     orderby p.ProductID
-                                     select new
-                                     {
-                                         ProductID = p.ProductID,
-                                         ProductName = p.ProductName,
-                                         ProductDistrib = p.ProductDescrip,
-                                         Price = p.Price,
-                                         DistrName = s.DistrName
-                                     };
+                                     select new {
+                                                    ProductID = p.ProductID,
+                                                    ProductName = p.ProductName,
+                                                    ProductDistrib = p.ProductDescrip,
+                                                    Price = p.Price,
+                                                    DistrName = s.DistrName
+                                                })
+                                     .OrderBy(i => i.ProductID);
                     foreach (var p in group_prod)
                     {
                         Console.WriteLine("\nProduct ID: {0}\nProduct Name: {1}\nProduct Description: {2}\nPrice: {3}\nShop: {4}",
@@ -61,18 +60,17 @@ namespace LINQtoXMLTest
                     break;
                 case 2:
                     Console.WriteLine("Все магазины с информацией о товарах в них (если есть),\nкаждая пара магазин/товар - отдельный результат; \nсортировка по distributorId");
-                    var group_shop = from s in distributor
+                    var group_shop = (from s in distributor
                                      join p in products on s.DistrID equals p.DistrID_Prod
-                                     orderby s.DistrID
-                                     select new
-                                     {
-                                         DistrID = s.DistrID,
-                                         DistrName = s.DistrName,
-                                         ProductID = p.ProductID,
-                                         ProductName = p.ProductName,
-                                         ProductDistrib = p.ProductDescrip,
-                                         Price = p.Price    
-                                     };
+                                     select new{
+                                                    DistrID = s.DistrID,
+                                                    DistrName = s.DistrName,
+                                                    ProductID = p.ProductID,
+                                                    ProductName = p.ProductName,
+                                                    ProductDistrib = p.ProductDescrip,
+                                                    Price = p.Price    
+                                                })
+                                     .OrderBy(i => i.DistrID);
                     foreach (var s in group_shop)
                     {
                         Console.WriteLine("\nShop: {0}, ID: {1}\nProduct ID: {2}\nProduct Name: {3}\nProduct Description: {4}\nPrice: {5}",
@@ -81,23 +79,23 @@ namespace LINQtoXMLTest
                     Repeat();
                     break;
                 case 3:
-                    Console.WriteLine("Только те товары/магазины, для которых данные есть \nи в одной и другой таблице");
-                    var fullInfo = from p in products
+                    Console.WriteLine("Только те товары/магазины, для которых данные есть и в одной и другой таблице");
+                    var fullInfo = (from p in products
                                    join s in distributor on p.DistrID_Prod equals s.DistrID
-                                   where (int)p.Price != 0 && p.DistrID_Prod != "" && s.DistrID != ""
-                                   orderby p.Price
-                                   select new
-                                   {
-                                       DistrID_Prod = p.DistrID_Prod,
-                                       ProductName = p.ProductName,
-                                       ProductDistrib = p.ProductDescrip,
-                                       Price = p.Price,
-                                       DistrName = s.DistrName
-                                   };
+                                   select new {
+                                                ProductID = p.ProductID,
+                                                DistrID_Prod = p.DistrID_Prod,
+                                                ProductName = p.ProductName,
+                                                ProductDistrib = p.ProductDescrip,
+                                                Price = p.Price,
+                                                DistrName = s.DistrName
+                                              })
+                                    .Where(i => i.Price != 0 && i.DistrID_Prod != "" && i.ProductID != "")
+                                    .OrderBy(i => i.ProductID);
                     foreach (var dist in fullInfo)
                     {
                         Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}\nProduct Description: {2} \nPrace: {3}\nShop: {4}", 
-                                            dist.DistrID_Prod, dist.ProductName, dist.ProductDistrib, dist.Price, dist.DistrName);
+                                            dist.ProductID, dist.ProductName, dist.ProductDistrib, dist.Price, dist.DistrName);
                     }
                     Repeat();
                     break;
@@ -116,16 +114,17 @@ namespace LINQtoXMLTest
                     break;
                 case 5:
                     Console.WriteLine("Отобразить продукты и соответствующие магазины, \nгде цена меньше 10, сортировка по возрастанию цены");
-                    var sort_price = from p in products
-                                     join s in distributor on p.DistrID_Prod equals s.DistrID
-                                      where ((int)p.Price < 10 && (int)p.Price != 0)
-                                      orderby p.Price
+                    var sort_price = (from p in products
+                                      join s in distributor on p.DistrID_Prod equals s.DistrID
                                       select new {
-                                         DistrID_Prod = p.DistrID_Prod,
-                                         ProductName = p.ProductName,
-                                         ProductDistrib = p.ProductDescrip,
-                                         Price = p.Price,
-                                         DistrName = s.DistrName};
+                                                    DistrID_Prod = p.DistrID_Prod,
+                                                    ProductName = p.ProductName,
+                                                    ProductDistrib = p.ProductDescrip,
+                                                    Price = p.Price,
+                                                    DistrName = s.DistrName
+                                                 })
+                                     .Where(i => i.Price <10 && i.Price != 0)
+                                     .OrderBy(i => i.Price);
                     foreach (var p in sort_price)
                     {
                         Console.WriteLine("\nProduct ID: {0}\nProduct Name: {1}\nProduct Description: {2}\nPrice: {3}\nShop: {4}", 
