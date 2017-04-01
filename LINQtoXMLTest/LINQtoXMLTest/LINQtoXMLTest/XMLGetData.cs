@@ -102,7 +102,7 @@ namespace LINQtoXMLTest
                 case 4:
                     Console.WriteLine("Отобразить только продукты с уникальными значениями цен");
                     var group_Uniq = (from i in products select i)
-                                      .Distinct(new Unique_Price())
+                                      .Distinct()
                                       .Where(i => i.Price != 0)
                                       .OrderBy(i => i.Price);
                     foreach (var dist in group_Uniq)
@@ -159,18 +159,15 @@ namespace LINQtoXMLTest
         public string DistrID_Prod { get; set; }
         public int Price { get; set; }
 
-        
-    }
-    class Unique_Price : IEqualityComparer<Product>
-    {
-        public bool Equals(Product x, Product y)
+        public override bool Equals(object obj)
         {
-            return x.Price == y.Price;
+            return this.Price == ((Product)obj).Price;
         }
 
-        public int GetHashCode(Product obj)
+        public override int GetHashCode()
         {
-            return obj.Price.GetHashCode();
+            return this.Price.GetHashCode();
         }
     }
+
 }

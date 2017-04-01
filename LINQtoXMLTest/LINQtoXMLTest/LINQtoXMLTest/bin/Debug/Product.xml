@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <productId ID_Prod="4893">
+    <productName>Ноутбук HP 250</productName>
+    <productDescription>HP</productDescription>
+    <distributorId>6583</distributorId>
+    <price>9</price>
+  </productId>
+  <productId ID_Prod="">
+    <productName>Ноутбук HP 250 G5</productName>
+    <productDescription>HP</productDescription>
+    <distributorId>3563</distributorId>
+    <price>0</price>
+  </productId>
+  <productId ID_Prod="1964">
+    <productName>Ноутбук Asus X756UA</productName>
+    <productDescription>Asus</productDescription>
+    <distributorId></distributorId>
+    <price>14</price>
+  </productId>
+  <productId ID_Prod="3966">
+    <productName>Ноутбук Asus X540LJ</productName>
+    <productDescription>Asus</productDescription>
+    <distributorId>3563</distributorId>
+    <price>12</price>
+  </productId>
+  <productId ID_Prod="1037">
+    <productName>Ноутбук Asus VivoBook X556UQ</productName>
+    <productDescription>Asus</productDescription>
+    <distributorId>1214</distributorId>
+    <price>20</price>
+  </productId>
+  <productId ID_Prod="1854">
+    <productName>Ноутбук Lenovo IdeaPad 110-15</productName>
+    <productDescription>Lenovo</productDescription>
+    <distributorId>6583</distributorId>
+    <price>8</price>
+  </productId>
+  <productId ID_Prod="8653">
+    <productName>Ноутбук Acer Aspire F5-573G-51Q7</productName>
+    <productDescription>Acer</productDescription>
+    <distributorId>3563</distributorId>
+    <price>0</price>
+  </productId>
+  <productId ID_Prod="6590">
+    <productName>Ноутбук Lenovo IdeaPad 100-15 IBD</productName>
+    <productDescription>Lenovo</productDescription>
+    <distributorId>6583</distributorId>
+    <price>12</price>
+  </productId>
+  <productId ID_Prod="2263">
+    <productName>Ноутбук Dell Inspiron 3552</productName>
+    <productDescription>Dell</productDescription>
+    <distributorId>1214</distributorId>
+    <price>8</price>
+  </productId>
+  <productId ID_Prod="3984">
+    <productName>Ноутбук Lenovo IdeaPad 310-15</productName>
+    <productDescription>Lenovo</productDescription>
+    <distributorId></distributorId>
+    <price>12</price>
+  </productId>
+</products>
