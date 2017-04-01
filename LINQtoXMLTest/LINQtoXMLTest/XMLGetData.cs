@@ -25,7 +25,7 @@ namespace LINQtoXMLTest
                            {
                                ProductID = distr_Prod.Attribute("ID_Prod").Value,
                                ProductName = distr_Prod.Element("productName").Value,
-                               ProductDistrib = distr_Prod.Element("productDiscription").Value,
+                               ProductDescrip = distr_Prod.Element("productDescription").Value,
                                DistrID_Prod = distr_Prod.Element("distributorId").Value,
                                Price = (int)distr_Prod.Element("price")
                            };
@@ -36,52 +36,52 @@ namespace LINQtoXMLTest
                                   DistrName = distr.Element("distributorName").Value
                               };
 
-            
-            
-
             int currVal = Int32.Parse(Console.ReadLine());
             switch (currVal)
             { 
                 case 1:
-                    var group_prod = products.GroupJoin(distributor, pr => pr.DistrID_Prod,
-                                                          dis => dis.DistrID,
-                                                          (prod, distr) => new
-                                                          {
-                                                              ProductName = prod.ProductName,
-                                                              ProductDistrib = prod.ProductDistrib,
-                                                              IDProd = prod.ProductID,
-                                                              Price = prod.Price,
-                                                              DistrName = distr.Select(d => d.DistrName)
-                                                          });
+                    Console.WriteLine("Все товары с информацией о соответствующем магазите (если есть), \nотсортированные по producrId");
+                    var group_prod = from p in products
+                                     join s in distributor on p.DistrID_Prod equals s.DistrID
+                                     orderby p.ProductID
+                                     select new
+                                     {
+                                         ProductID = p.ProductID,
+                                         ProductName = p.ProductName,
+                                         ProductDistrib = p.ProductDescrip,
+                                         Price = p.Price,
+                                         DistrName = s.DistrName
+                                     };
                     foreach (var p in group_prod)
                     {
-                        Console.WriteLine("\nID Product: {0}\nShop: {1}\nDiscription: {2}\nPrice: {3}", 
-                                           p.IDProd, p.ProductName, p.ProductDistrib, p.Price);
-                        foreach (var s in p.DistrName)
-                        {
-                            Console.WriteLine("Shop: {0}", s);
-                        }
+                        Console.WriteLine("\nProduct ID: {0}\nProduct Name: {1}\nProduct Description: {2}\nPrice: {3}\nShop: {4}",
+                                           p.ProductID, p.ProductName, p.ProductDistrib, p.Price, p.DistrName);
                     }
-                    Repead();
+                    Repeat();
                     break;
                 case 2:
-                    var group_shop = distributor.GroupJoin(products, dis => dis.DistrID,
-                                                          pr => pr.DistrID_Prod,
-                                                          (dist, prod) => new
-                                                          {
-                                                              DistrName = dist.DistrName,
-                                                              ID = dist.DistrID,
-                                                              ProductName = prod.Select(p => p.ProductName)
-                                                          });
+                    Console.WriteLine("Все магазины с информацией о товарах в них (если есть),\nкаждая пара магазин/товар - отдельный результат; \nсортировка по distributorId");
+                    var group_shop = from s in distributor
+                                     join p in products on s.DistrID equals p.DistrID_Prod
+                                     orderby s.DistrID
+                                     select new
+                                     {
+                                         DistrID = s.DistrID,
+                                         DistrName = s.DistrName,
+                                         ProductID = p.ProductID,
+                                         ProductName = p.ProductName,
+                                         ProductDistrib = p.ProductDescrip,
+                                         Price = p.Price    
+                                     };
                     foreach (var s in group_shop)
                     {
-                        Console.WriteLine("\nShop: {0}, ID: {1}", s.DistrName, s.ID);
-                        foreach (var prod in s.ProductName)
-                        Console.WriteLine("Product: {0}", prod);
+                        Console.WriteLine("\nShop: {0}, ID: {1}\nProduct ID: {2}\nProduct Name: {3}\nProduct Description: {4}\nPrice: {5}",
+                                        s.DistrName, s.DistrID, s.ProductID, s.ProductName, s.ProductDistrib, s.Price);
                     }
-                    Repead();
+                    Repeat();
                     break;
                 case 3:
+                    Console.WriteLine("Только те товары/магазины, для которых данные есть \nи в одной и другой таблице");
                     var fullInfo = from p in products
                                    join s in distributor on p.DistrID_Prod equals s.DistrID
                                    where (int)p.Price != 0 && p.DistrID_Prod != "" && s.DistrID != ""
@@ -90,38 +90,32 @@ namespace LINQtoXMLTest
                                    {
                                        DistrID_Prod = p.DistrID_Prod,
                                        ProductName = p.ProductName,
-                                       ProductDistrib = p.ProductDistrib,
+                                       ProductDistrib = p.ProductDescrip,
                                        Price = p.Price,
                                        DistrName = s.DistrName
                                    };
                     foreach (var dist in fullInfo)
                     {
-                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}\nProduct Discription: {2} \nPrace: {3}\nShop: {4}", 
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1}\nProduct Description: {2} \nPrace: {3}\nShop: {4}", 
                                             dist.DistrID_Prod, dist.ProductName, dist.ProductDistrib, dist.Price, dist.DistrName);
                     }
-                    Repead();
+                    Repeat();
                     break;
                 case 4:
-                    var group_del = (from i in products
-                              join s in distributor on i.DistrID_Prod equals s.DistrID
-                              select new Delete{ ProductID_Del = i.ProductID,
-                                  ProductName_Del = i.ProductName,
-                                  ProductDistrib_Del = i.ProductDistrib,
-                                  DistrID_Prod_Del = i.DistrID_Prod,
-                                  Price_Del = i.Price,
-                                  DistrName_Del = s.DistrName}).Distinct();
-                    var del = from i in group_del
-                              where i.Price_Del != 0
-                              orderby i.Price_Del
-                              select i;
-                    foreach (var dist in del)
+                    Console.WriteLine("Отобразить только продукты с уникальными значениями цен");
+                    var group_Uniq = (from i in products select i)
+                                      .Distinct()
+                                      .Where(i => i.Price != 0)
+                                      .OrderBy(i => i.Price);
+                    foreach (var dist in group_Uniq)
                     {
-                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1} \nProduct Discription: {2} \nPrace: {3}",
-                                            dist.ProductID_Del, dist.ProductName_Del, dist.ProductDistrib_Del, dist.Price_Del);
+                        Console.WriteLine("\nProduct ID: {0} \nProduct Name: {1} \nProduct Description: {2} \nPrace: {3}",
+                                            dist.ProductID, dist.ProductName, dist.ProductDescrip, dist.Price);
                     }
-                    Repead();
+                    Repeat();
                     break;
                 case 5:
+                    Console.WriteLine("Отобразить продукты и соответствующие магазины, \nгде цена меньше 10, сортировка по возрастанию цены");
                     var sort_price = from p in products
                                      join s in distributor on p.DistrID_Prod equals s.DistrID
                                       where ((int)p.Price < 10 && (int)p.Price != 0)
@@ -129,15 +123,15 @@ namespace LINQtoXMLTest
                                       select new {
                                          DistrID_Prod = p.DistrID_Prod,
                                          ProductName = p.ProductName,
-                                         ProductDistrib = p.ProductDistrib,
+                                         ProductDistrib = p.ProductDescrip,
                                          Price = p.Price,
                                          DistrName = s.DistrName};
                     foreach (var p in sort_price)
                     {
-                        Console.WriteLine("\nID Product: {0}\nShop: {1}\nDiscription: {2}\nPrice: {3}\nShop: {4}", 
+                        Console.WriteLine("\nProduct ID: {0}\nProduct Name: {1}\nProduct Description: {2}\nPrice: {3}\nShop: {4}", 
                                             p.DistrID_Prod, p.ProductName, p.ProductDistrib, p.Price, p.DistrName);
                     }
-                    Repead();
+                    Repeat();
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -145,7 +139,7 @@ namespace LINQtoXMLTest
             }
         }
 
-        void Repead()
+        void Repeat()
         {
             Console.Write("\nПовторить выбор вывода данных  ");
             LoadData();
@@ -162,30 +156,19 @@ namespace LINQtoXMLTest
     {
         public string ProductID { get; set; }
         public string ProductName { get; set; }
-        public string ProductDistrib { get; set; }
+        public string ProductDescrip { get; set; }
         public string DistrID_Prod { get; set; }
         public int Price { get; set; }
 
-        
-    }
-
-    class Delete
-    {
-        public string ProductID_Del { get; set; }
-        public string ProductName_Del { get; set; }
-        public string ProductDistrib_Del { get; set; }
-        public string DistrID_Prod_Del { get; set; }
-        public int Price_Del { get; set; }
-        public string DistrName_Del { get; set; }
-
         public override bool Equals(object obj)
         {
-            return this.Price_Del == ((Delete)obj).Price_Del;
+            return this.Price == ((Product)obj).Price;
         }
 
         public override int GetHashCode()
         {
-            return this.Price_Del.GetHashCode();
+            return this.Price.GetHashCode();
         }
     }
+
 }

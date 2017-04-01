@@ -23,3 +23,8 @@ G:\ProgramAce\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.pdb
 G:\ProgramAce\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
 G:\ProgramAce\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
 G:\ProgramAce\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
+D:\Git\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.exe
+D:\Git\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.pdb
+D:\Git\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.exe
+D:\Git\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\bin\Debug\LINQtoXMLTest.pdb
+D:\Git\LINQtoXML\LINQtoXMLTest\LINQtoXMLTest\obj\x86\Debug\LINQtoXMLTest.csprojResolveAssemblyReference.cache
